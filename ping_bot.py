@@ -9,7 +9,7 @@ queue = Queue()
 hosts = {'ESXi_VM1': '10.10.0.1', 'ESXi_VM2': '192.168.0.10',
          'TRN': '10.10.0.4', 'FreeNAS': '192.168.0.6',
          'ASKtele': '10.10.0.7', 'AppServer': '10.10.0.9',
-         'Serv1: '192.168.0.5', 'googledns': '8.8.8.8',
+         'Serv1: '192.168.0.5', 'googledns': '8.8.8.8'
         }
 
 bot = telebot.TeleBot(token)
