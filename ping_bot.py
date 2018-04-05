@@ -3,14 +3,13 @@ import subprocess
 from queue import Queue
 import time
 import telebot
-token = '281189360:AAFqJjHWinmLT3rUNFwJ4vh1BJGHbrHMTCk'
+token = 'your_telegram_token'
 
 queue = Queue()
 hosts = {'ESXi_VM1': '10.10.0.1', 'ESXi_VM2': '192.168.0.10',
          'TRN': '10.10.0.4', 'FreeNAS': '192.168.0.6',
          'ASKtele': '10.10.0.7', 'AppServer': '10.10.0.9',
-         'UEZTU-1C': '192.168.0.5', 'УЕЗТУ.РФ': 'xn--e1ae7abd.xn--p1ai',
-		 #'ex_wrong': 'wrong_site_is_printed.petych'
+         'Serv1: '192.168.0.5', 'googledns': '8.8.8.8',
         }
 
 bot = telebot.TeleBot(token)
@@ -20,16 +19,13 @@ def pinger(i, q, phosts):
     print ("%s: ping %s..." % (i, phosts[i-1]))
     ret = subprocess.call("ping -n 1 %s" % host,
                         shell=True,
-                        stdout=open('C:\pr\ping_bot\log.txt', 'w'),
+                        stdout=open('C:\ping_bot\log.txt', 'w'),
                         stderr=subprocess.STDOUT)
-    #print(type(phosts))
     if ret == 0:
-        #print ("%s host is up" % host)
         print('Host ' + phosts[i-1] +': ' + host + ' is up')
     else:
         print('Host ' + phosts[i-1] +': ' + host + ' is down')
-#        bot.send_message('315364617', 'Host ' + host + ' is down')
-        bot.send_message('-227414185', 'Host ' + phosts[i-1] +': ' + host + ' is down')
+        bot.send_message('your_id', 'Host ' + phosts[i-1] +': ' + host + ' is down')
     print('______________________________________________________')
     q.task_done()
 while True:
